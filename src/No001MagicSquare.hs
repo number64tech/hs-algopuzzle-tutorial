@@ -1,14 +1,16 @@
 module No001MagicSquare where
 
 --
-checkEstablished :: [Int] -> Maybe Boolean
-checkEstablished square let size = (length square)
-  | (size < 5) = Nothing
-  | (size = 6) = false
-  | otherwise = true
+checkEstablished :: [Int] -> Maybe Bool
+checkEstablished square
+  | (sqsize < 5) = Nothing
+  | (sqsize == 6) = Just False
+  | otherwise = Just True
+  where
+    sqsize = (length square)
 
-isEstablished :: Boolean
-isEstablished = checkEstablished [1,2,3,4,5,6,]
+isEstablished :: Maybe Bool
+isEstablished = checkEstablished [1,2,3,4,5,6,7]
 
 main :: IO ()
 main = putStrLn (show isEstablished)
