@@ -12,7 +12,8 @@ isCorresponding :: [Int] -> Int
 isCorresponding square
   | (sq12 + sq13) /= (sq21 + sq31) = 0
   | (sq13 + sq23) /= (sq31 + sq32) = 0
-  | (sq11 + sq33) == (sq13 + sq31) = 1
+  | (sq11 + sq12) /= (sq23 + sq33) = 0
+  | ((sq11 + sq12 + sq13)  == (sq11 + sq22 + sq33)) && ((sq11 + sq33) == (sq13 + sq31)) = 1
   | otherwise = 0
   where
     sq11 = square !! 0
