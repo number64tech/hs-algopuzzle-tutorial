@@ -5,19 +5,19 @@ base :: [Int]
 base = [1 .. 9]
 --
 revFilter :: [Int] -> [Int] -> [Int]
-revFilter (x : xs) source = revFilter xs (filter (/= x) source)
 revFilter [] source = source
+revFilter (x : xs) source = revFilter xs (filter (/= x) source)
 --
 isCorresponding :: [Int] -> Int
 isCorresponding square
   | (sq22 /= 5) = 0
   | (sq12 + sq13) /= (sq21 + sq31) = 0
-  | (sq11 + sq12 + sq13) == (sq21 + sq22 + sq23) &&
-    (sq11 + sq12 + sq13) == (sq31 + sq32 + sq33) &&
-    (sq11 + sq12 + sq13) == (sq12 + sq22 + sq32) &&
-    (sq11 + sq12 + sq13) == (sq13 + sq23 + sq33) &&
-    (sq11 + sq12 + sq13) == (sq11 + sq22 + sq33) &&
-    (sq11 + sq12 + sq13) == (sq13 + sq22 + sq31) = 1
+  | (((sq11 + sq12 + sq13) == (sq21 + sq22 + sq23)) &&
+    ((sq11 + sq12 + sq13) == (sq31 + sq32 + sq33)) &&
+    ((sq11 + sq12 + sq13) == (sq13 + sq23 + sq33)) &&
+    ((sq11 + sq12 + sq13) == (sq12 + sq22 + sq32)) &&
+    ((sq11 + sq12 + sq13) == (sq11 + sq22 + sq33)) &&
+    ((sq11 + sq12 + sq13) == (sq13 + sq22 + sq31))) = 1
   | otherwise = 0
   where
     sq11 = square !! 0
@@ -38,4 +38,4 @@ derivation count (child : otherChildren) parentSqr
   where
     square = parentSqr ++ [child]
     squareSize = length (square)
-    candidates = revFilter parentSqr base
+    candidates = revFilter square base
